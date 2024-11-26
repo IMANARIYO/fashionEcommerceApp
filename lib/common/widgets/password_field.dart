@@ -2,7 +2,7 @@
 
 import 'package:ecom_t/common/utils/kcolors.dart';
 import 'package:ecom_t/common/widgets/app_style.dart';
-import 'package:ecom_t/src/auth/views/controllers/passoword_notifier.dart';
+import 'package:ecom_t/src/auth/controllers/passoword_notifier.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

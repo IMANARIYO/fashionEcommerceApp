@@ -4,9 +4,12 @@ import 'package:ecom_t/common/widgets/back_button.dart';
 import 'package:ecom_t/common/widgets/custom_button.dart';
 import 'package:ecom_t/common/widgets/email_textfield.dart';
 import 'package:ecom_t/common/widgets/password_field.dart';
+import 'package:ecom_t/src/auth/controllers/auth_notifier.dart';
+import 'package:ecom_t/src/auth/models/registration_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 // import 'package:go_router/go_router.dart';
 
 class RegistrationPage extends StatefulWidget {
@@ -100,8 +103,19 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     radius: 25,
                   ),
                   SizedBox(height: 20.h),
+                  context.watch<Authnotifier>().isLoading?const Center(
+                    child:CircularProgressIndicator(
+                      backgroundColor: Kolors.kPrimary,
+                      valueColor: AlwaysStoppedAnimation<Color>(Kolors.kWhite),
+                    ) ,
+                  ):
                   CustomButton(
-                    onTap: () {},
+                    onTap: () {
+                      RegistrationModel model=RegistrationModel(username: _usernameController.text, email: _emailController.text, password: _passwordController.text);
+String data=registrationModelToJson(model);
+context.read<Authnotifier>().registrationFunc(data,context);
+
+                    },
                     text: "S I G N U  P",
                     btnWidth: ScreenUtil().screenWidth,
                     btnHieght: 40,

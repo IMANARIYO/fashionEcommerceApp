@@ -4,10 +4,13 @@ import 'package:ecom_t/common/widgets/back_button.dart';
 import 'package:ecom_t/common/widgets/custom_button.dart';
 import 'package:ecom_t/common/widgets/email_textfield.dart';
 import 'package:ecom_t/common/widgets/password_field.dart';
+import 'package:ecom_t/src/auth/controllers/auth_notifier.dart';
+import 'package:ecom_t/src/auth/models/login_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -85,13 +88,30 @@ class _LoginPageState extends State<LoginPage> {
                     radius: 25,
                   ),
                   SizedBox(height: 20.h),
-                  CustomButton(
-                    onTap: () {},
-                    text: "L O G I N",
-                    btnWidth: ScreenUtil().screenWidth,
-                    btnHieght: 40,
-                    radius: 20,
-                  )
+                  context.watch<Authnotifier>().isLoading
+                      ? const Center(
+                          child: CircularProgressIndicator(
+                          backgroundColor: Kolors.kPrimary,
+                          valueColor:
+                              AlwaysStoppedAnimation<Color>(Kolors.kWhite),
+                        ))
+                      : CustomButton(
+                          onTap: () {
+                            LoginModel model = LoginModel(
+                                username: _usernameController.text,
+                                password: _passwordController.text);
+                            String data = loginModelToJson(model);
+                            print("the  data are the  ${data}");
+                            context
+                                .read<Authnotifier>()
+                                .loginFunc(data, context);
+                          
+                          },
+                          text: "L O G I N",
+                          btnWidth: ScreenUtil().screenWidth,
+                          btnHieght: 40,
+                          radius: 20,
+                        )
                 ],
               ))
         ],
