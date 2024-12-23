@@ -15,16 +15,16 @@ class ExploreProducts extends StatelessWidget {
   Widget build(BuildContext context) {
     String? accessToken = Storage().getString('accessToken');
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 8.h), // Increased for better spacing
+      padding: EdgeInsets.symmetric(horizontal: 8.h), 
       child: MasonryGridView.count(
-        crossAxisCount: 2, // Number of columns
+        crossAxisCount: 2,
         mainAxisSpacing: 8.h,
         crossAxisSpacing: 8.h,
         itemCount: productsList.length,
-        shrinkWrap: true, // Add this line to allow proper layout inside ListView
-        physics: const NeverScrollableScrollPhysics(), // Prevent scrolling conflict
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(), 
         itemBuilder: (context, i) {
-          final double mainAxisCellCount = (i % 2 == 0 ? 2.17 : 2.4);
+    final double mainAxisCellCount = (i % 2 == 0 ? 2.17 : 2.4);
           final product = productsList[i];
           return StaggeredTileWidget(
             i: i,
@@ -32,10 +32,10 @@ class ExploreProducts extends StatelessWidget {
             onTap: () {
               if (accessToken == null) {
                 loginBottomSheet(context);
-              } else {
-                // TODO: Handle wishlist functionality
-                print("Wishlist added for product: ${product.title}");
-              }
+              } 
+  else {             
+  print("Wishlist added for product: ${product.title}");
+        }
             },
           );
         },

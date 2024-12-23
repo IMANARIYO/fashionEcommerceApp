@@ -51,7 +51,7 @@ backgroundColor: WidgetStateProperty.all(
               crossAxisAlignment: CrossAxisAlignment.center,
            
               children: [
-                   Icon(FontAwesome.shopping_bag,size: 16,color: Kolors.kWhite,),
+                   const Icon(FontAwesome.shopping_bag,size: 16,color: Kolors.kWhite,),
               SizedBox(width: 8.w,),
 
               ReusableText(text: 'checkout', style: appStyle(14, Kolors.kWhite, FontWeight.bold))

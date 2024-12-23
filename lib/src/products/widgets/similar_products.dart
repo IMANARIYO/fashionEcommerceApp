@@ -34,7 +34,7 @@ class SimilarProducts extends StatelessWidget {
                 loginBottomSheet(context);
               } else {
                 // TODO: Handle wishlist functionality
-                print("Wishlist added for product: ${product.title}");
+        
               }
             },
           );
